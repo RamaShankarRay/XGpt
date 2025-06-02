@@ -48,7 +48,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await signInWithPopup(auth, provider);
     } catch (error: any) {
       console.error("Sign in error:", error);
-      throw new Error("Failed to sign in with Google");
+      
+      // Provide specific error messages for common Firebase auth issues
+      if (error.code === 'auth/configuration-not-found') {
+        throw new Error("Firebase authentication is not properly configured. Please ensure Google sign-in is enabled in your Firebase console.");
+      } else if (error.code === 'auth/unauthorized-domain') {
+        throw new Error("This domain is not authorized for Firebase authentication. Please add it to your Firebase authorized domains list.");
+      } else if (error.code === 'auth/popup-blocked') {
+        throw new Error("Popup was blocked by your browser. Please allow popups for this site and try again.");
+      } else if (error.code === 'auth/popup-closed-by-user') {
+        throw new Error("Sign-in was cancelled. Please try again.");
+      } else {
+        throw new Error(`Authentication failed: ${error.message}`);
+      }
     }
   };
 
