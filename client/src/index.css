@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 151 78% 36%; /* #10A37F - XGpt primary green */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 151 78% 36%; /* Match primary */
+  --radius: 0.75rem;
+
+  /* Custom XGpt colors */
+  --primary-dark: 151 78% 30%; /* #0D8A6B - darker primary */
+  --chat-bg: 240 9% 97%; /* #F7F7F8 */
+  --dark-bg: 222 84% 5%; /* #0D1117 */
+  --dark-surface: 215 28% 17%; /* #21262D */
+  --dark-border: 217 19% 27%; /* #30363D */
+  --user-bg: 151 78% 36%; /* Same as primary */
+  --ai-bg: 220 14% 96%; /* #F3F4F6 */
+  --ai-bg-dark: 215 25% 27%; /* #1F2937 */
+}
+
+.dark {
+  --background: 222 84% 5%; /* #0D1117 */
+  --foreground: 210 40% 98%;
+  --card: 215 28% 17%; /* #21262D */
+  --card-foreground: 210 40% 98%;
+  --popover: 215 28% 17%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 151 78% 36%; /* Keep primary green in dark mode */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 217 19% 27%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 19% 27%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217 19% 27%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 19% 27%;
+  --input: 217 19% 27%;
+  --ring: 151 78% 36%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  /* Custom animations */
+  @keyframes typing {
+    0%, 60% { opacity: 1; }
+    30% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { 
+      transform: translateY(10px); 
+      opacity: 0; 
+    }
+    to { 
+      transform: translateY(0); 
+      opacity: 1; 
+    }
+  }
+
+  .animate-typing {
+    animation: typing 1.5s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+}
+
+/* Prose styles for markdown content */
+.prose {
+  @apply max-w-none;
+}
+
+.prose pre {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto;
+}
+
+.prose code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 2px solid hsl(var(--muted));
+  border-top: 2px solid hsl(var(--primary));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+}
+
+/* Button transitions */
+.btn-transition {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Chat bubble animations */
+.chat-bubble-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+/* Typing indicator dots */
+.typing-dot {
+  animation: typing 1.5s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
