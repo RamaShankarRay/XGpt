@@ -133,6 +133,33 @@ export const ChatPage: React.FC = () => {
     }
   };
 
+  const renameChat = async (chatId: string, newTitle: string) => {
+    if (!user) return;
+
+    try {
+      await updateDoc(doc(db, "users", user.uid, "chats", chatId), {
+        title: newTitle,
+        updatedAt: Date.now(),
+      });
+      
+      if (currentChat?.id === chatId) {
+        setCurrentChat(prev => prev ? { ...prev, title: newTitle } : null);
+      }
+      
+      toast({
+        title: "Chat renamed",
+        description: "Chat title updated successfully",
+      });
+    } catch (error) {
+      console.error("Error renaming chat:", error);
+      toast({
+        title: "Error",
+        description: "Failed to rename chat",
+        variant: "destructive",
+      });
+    }
+  };
+
   const deleteChat = async (chatId: string) => {
     if (!user) return;
 

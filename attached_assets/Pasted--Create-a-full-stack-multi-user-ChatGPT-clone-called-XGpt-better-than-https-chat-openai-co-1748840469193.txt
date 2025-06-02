@@ -1,0 +1,130 @@
+🚀 Create a full-stack, multi-user ChatGPT clone called **XGpt**, better than https://chat.openai.com in both design and functionality.
+
+🧠 Architecture Requirements:
+- Must support **multiple users** chatting simultaneously with their own data.
+- Each user sees only their own chats.
+- User-specific chat history stored securely.
+- Firebase Authentication to manage unique user sessions.
+
+---
+
+🧱 Tech Stack:
+- ⚛️ Frontend: React (latest), Tailwind CSS, Framer Motion
+- 🔥 Backend: Firebase (Authentication + Firestore for multi-user chat history)
+- 🤖 AI Engine: OpenAI API (`gpt-4` or `gpt-3.5-turbo`)
+- 🔐 Secrets: API key managed securely via `.env` or Replit secrets
+- 📁 Modular folder structure
+
+---
+
+📁 Project Structure:
+root/
+├── public/
+├── src/
+│ ├── components/
+│ │ ├── ChatInput.jsx
+│ │ ├── ChatBubble.jsx
+│ │ ├── Sidebar.jsx
+│ │ ├── Navbar.jsx
+│ │ └── TypingDots.jsx
+│ ├── pages/
+│ │ └── ChatPage.jsx
+│ ├── utils/
+│ │ ├── firebase.js
+│ │ └── gptApi.js
+│ ├── App.jsx
+│ └── index.js
+├── .env (for OpenAI API key)
+├── .gitignore
+├── package.json
+
+
+---
+
+🧑‍🤝‍🧑 Multi-User System:
+- Firebase Authentication (Google sign-in preferred)
+- Each user is identified by UID
+- Firestore stores data like:
+users/{uid}/chats/{chatId}/messages
+
+yaml
+Copy
+Edit
+- Users can:
+- Create new chats
+- View only their chat history
+- Rename chats
+- Delete chats
+
+---
+
+
+
+
+- Auto-title chat from first user message
+- Chat history is passed in every request for context
+- Stream-like response typing effect
+
+---
+
+🎨 UI/UX Must Include:
+- Stunning minimal ChatGPT-like interface
+- Responsive layout (desktop, tablet, mobile)
+- Sidebar with:
+- New chat button
+- List of previous chats
+- User profile + sign-out
+- Chat area:
+- Markdown + syntax highlighting
+- Typing animation
+- Auto-scroll to latest
+- Dark mode toggle
+- Loading shimmer animation
+
+---
+
+🚦 Error Handling:
+- Show clear error if OpenAI key is missing
+- Show toasts for API or Firebase failures
+- Retry on failed requests
+
+---
+
+🔐 Security:
+- Firebase rules ensure:
+- Users can only read/write their own data
+- Do **not expose** OpenAI key in frontend beyond environment variable
+
+---
+
+🧪 Features to Implement:
+- ✅ Sign in/out
+- ✅ New chat
+- ✅ View old chats
+- ✅ Auto scroll + typing indicator
+- ✅ Chat history stored per user
+- ✅ Switch between multiple chats
+- ✅ Loading + error UI
+- ✅ OpenAI integration
+- ✅ API key stored securely in Replit secrets
+- ✅ Fully responsive and mobile-friendly
+
+---
+
+🏁 Stretch Goals (Optional but recommended):
+- Voice-to-text
+- Export chat as PDF
+- Toggle GPT-3.5 and GPT-4
+- Usage analytics
+- Firebase Hosting ready
+
+---
+
+💡 Deployment:
+- Should be deployable on:
+- 🔥 Firebase Hosting
+
+---
+
+🎯 GOAL:
+Build a beautiful, fully functional, scalable **multi-user ChatGPT clone** named **XGpt**, with Firebase for auth + storage, OpenAI for response, Tailwind for UI, and a clean modular codebase — as good as or better than ChatGPT.
