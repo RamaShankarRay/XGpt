@@ -88,6 +88,6 @@ MIT
 
 ## Contact
 
-Your Name - [@yourusername](https://github.com/yourusername)
+Rama Shankar Ray - [@RamaShankarRay](https://github.com/RamaShankarRay)
 
-Project Link: [https://github.com/yourusername/xgpt](https://github.com/yourusername/xgpt)
+Project Link: [https://github.com/RamaShankarRay/XGpt](https://github.com/RamaShankarRay/XGpt)
