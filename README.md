@@ -32,8 +32,8 @@ VITE_OPENAI_API_KEY=your_openai_api_key
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/xgpt.git
-cd xgpt
+git clone https://github.com/RamaShankarRay/XGpt.git
+cd XGpt
 ```
 
 2. Install dependencies
