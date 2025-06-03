@@ -4,9 +4,9 @@ import OpenAI from "openai";
 import { openaiRequestSchema } from "@shared/schema";
 import { z } from "zod";
 
-// the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+// Initialize OpenAI client with the API key from environment variables
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || process.env.REACT_APP_OPENAI_API_KEY
+  apiKey: process.env.VITE_OPENAI_API_KEY
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -16,9 +16,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const body = openaiRequestSchema.parse(req.body);
       
-      if (!process.env.OPENAI_API_KEY && !process.env.REACT_APP_OPENAI_API_KEY) {
+      if (!process.env.VITE_OPENAI_API_KEY) {
         return res.status(500).json({ 
-          error: "OpenAI API key not configured. Please add OPENAI_API_KEY or REACT_APP_OPENAI_API_KEY to your environment variables." 
+          error: "OpenAI API key not configured. Please add VITE_OPENAI_API_KEY to your environment variables." 
         });
       }
 
