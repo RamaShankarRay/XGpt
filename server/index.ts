@@ -1,4 +1,6 @@
+import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
+import os from 'os';
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -59,7 +61,18 @@ app.use((req, res, next) => {
 
   // Use environment variable PORT or default to 3000
   const port = process.env.PORT || 3000;
-  server.listen(Number(port), 'localhost', () => {
-    log(`Server is running at http://localhost:${port}`);
+  server.listen(Number(port), () => {
+    const interfaces = os.networkInterfaces();
+    let localIp = 'localhost';
+    for (const name of Object.keys(interfaces)) {
+      for (const iface of interfaces[name] || []) {
+        if (iface.family === 'IPv4' && !iface.internal) {
+          localIp = iface.address;
+        }
+      }
+    }
+    log(`Server is running at:`);
+    log(`  http://localhost:${port}`);
+    log(`  http://${localIp}:${port}`);
   });
 })();
